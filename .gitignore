@@ -1,0 +1,31 @@
+# Python (in case we add any local tooling)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Node (in case we add any local tooling)
+node_modules/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build output — kept as an empty directory, contents ignored
+appPackage/build/*
+!appPackage/build/.gitkeep
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+*.pem
+secrets/
+
+# Azure CLI / Bicep build artefacts
+*.bicepconfig.json.bak
+azure.yaml
+.azure/

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.20/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.20",
+  "version": "1.0.0",
+  "id": "c5dea0c4-a0f1-44ce-8dc4-59a29c9b5218",
+  "developer": {
+    "name": "Zun Yang Chin",
+    "websiteUrl": "https://github.com/zunyangc/enginsights-agent",
+    "privacyUrl": "https://github.com/zunyangc/enginsights-agent/blob/main/SECURITY.md",
+    "termsOfUseUrl": "https://github.com/zunyangc/enginsights-agent/blob/main/LICENSE"
+  },
+  "name": {
+    "short": "EngInsights Agent",
+    "full": "EngInsights — Declarative GitHub Agent"
+  },
+  "description": {
+    "short": "Engineering intelligence in Copilot Chat, powered by GitHub's hosted MCP server.",
+    "full": "A Microsoft 365 Declarative Agent that turns scattered GitHub signals — pull requests, reviews, issues, commits — into one-sentence answers inside Copilot Chat. Built declaratively (zero hosted backend) on top of GitHub's hosted Remote MCP Server with per-user OAuth 2.0: each user signs in with their own GitHub identity, and the agent acts strictly within their permissions. Demonstrates Work IQ via Skills + Tools, MCP Apps packaging, External MCP server integration, and OAuth security for MCP."
+  },
+  "accentColor": "#0078D4",
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "copilotAgents": {
+    "declarativeAgents": [
+      {
+        "id": "enginsights-agent",
+        "file": "declarativeAgent.json"
+      }
+    ]
+  }
+}

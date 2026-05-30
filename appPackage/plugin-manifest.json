@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "EngInsights GitHub Action",
+  "namespace": "enginsights",
+  "description_for_human": "Reads pull requests, issues, commits, and search results from GitHub via the GitHub Remote MCP Server (OAuth-protected).",
+  "description_for_model": "Plugin that delegates engineering-intelligence queries to GitHub's hosted Model Context Protocol (MCP) server at https://api.githubcopilot.com/mcp/. Use this plugin whenever a user asks anything about pull requests, issues, commits, code search, repositories, or GitHub users. The plugin runs strictly within the signed-in user's GitHub OAuth scope (read:user, repo). Always call `get_me` once at the start of a session if the user's GitHub login is not already known. For activity questions, prefer `search_pull_requests` and `search_issues` with GitHub search qualifiers (e.g. `is:pr author:@me state:open updated:>YYYY-MM-DD`). For depth on a specific pull request (reviews, status checks, comments) call `pull_request_read`.",
+  "functions": [
+    { "name": "get_me",                 "description": "Get the authenticated GitHub user's profile (login, name, email, ids)." },
+    { "name": "search_pull_requests",   "description": "Search pull requests across GitHub using qualifiers like is:pr, author:@me, state:open, updated:>YYYY-MM-DD." },
+    { "name": "list_pull_requests",     "description": "List pull requests for a specific repository (owner, repo)." },
+    { "name": "pull_request_read",      "description": "Read full details of a specific pull request including reviews, status checks, and comments." },
+    { "name": "search_issues",          "description": "Search issues across GitHub using qualifiers (is:issue, author, assignee, label, state, updated)." },
+    { "name": "list_issues",            "description": "List issues for a specific repository." },
+    { "name": "issue_read",             "description": "Read full details of a specific issue including comments and timeline." },
+    { "name": "list_commits",           "description": "List commits on a branch of a repository." },
+    { "name": "get_commit",             "description": "Get full details (files, stats, parents) for a single commit." },
+    { "name": "search_commits",         "description": "Search commits across GitHub using qualifiers (author, committer, repo, date)." },
+    { "name": "search_code",            "description": "Search code across GitHub using qualifiers (path, language, repo)." },
+    { "name": "search_repositories",    "description": "Search GitHub repositories by name, topic, owner, language, etc." },
+    { "name": "search_users",           "description": "Search GitHub users by login, name, location, or other profile attributes." },
+    { "name": "get_file_contents",      "description": "Fetch the contents of a file from a repository at a given ref." }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "auth": {
+        "type": "OAuthPluginVault",
+        "reference_id": "${{OAUTH_REGISTRATION_ID}}"
+      },
+      "spec": {
+        "url": "https://api.githubcopilot.com/mcp/",
+        "mcp_tool_description": {
+          "file": "mcp-tools.json"
+        }
+      }
+    }
+  ],
+  "capabilities": {
+    "conversation_starters": [
+      { "title": "Daily briefing",  "text": "Give me my daily engineering briefing." },
+      { "title": "What's stuck?",   "text": "Which of my open pull requests are stuck and why?" },
+      { "title": "Review balance",  "text": "This week, did I review more pull requests than I authored?" }
+    ]
+  }
+}

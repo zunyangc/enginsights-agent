@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.2/schema.json",
+  "version": "v1.2",
+  "name": "EngInsights Agent",
+  "description": "Engineering intelligence in Copilot Chat. Summarises your GitHub activity, flags stuck pull requests, surfaces review imbalances, and recommends your single most important next action — using your own GitHub identity via OAuth.",
+  "instructions": "$[file('instructions.md')]",
+  "conversation_starters": [
+    {
+      "title": "Daily briefing",
+      "text": "Give me my daily engineering briefing."
+    },
+    {
+      "title": "What's stuck?",
+      "text": "Which of my open pull requests are stuck and why?"
+    },
+    {
+      "title": "Review balance",
+      "text": "This week, did I review more pull requests than I authored?"
+    },
+    {
+      "title": "Find a repo",
+      "text": "Find me the official repository for kiota."
+    },
+    {
+      "title": "Team snapshot",
+      "text": "Summarise this week's pull-request activity for alice, bob, and carol on the repo octocat/hello-world."
+    }
+  ],
+  "actions": [
+    {
+      "id": "github-mcp-action",
+      "file": "plugin-manifest.json"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version": "v2.4",
+    "name_for_human": "EngInsights GitHub Action",
+    "description_for_human": "Reads pull requests, issues, commits, and search results from GitHub via the GitHub Remote MCP Server (OAuth-protected).",
+    "namespace": "enginsights",
+    "functions": [
+        {
+            "name": "get_commit",
+            "description": "Get details for a commit from a GitHub repository"
+        },
+        {
+            "name": "get_file_contents",
+            "description": "Get the contents of a file or directory from a GitHub repository"
+        },
+        {
+            "name": "get_me",
+            "description": "Get details of the authenticated GitHub user. Use this when a request is about the user's own profile for GitHub. Or when information is missing to build other tool calls."
+        },
+        {
+            "name": "issue_read",
+            "description": "Get information about a specific issue in a GitHub repository."
+        },
+        {
+            "name": "list_commits",
+            "description": "Get list of commits of a branch in a GitHub repository. Returns at least 30 results per page by default, but can return more if specified using the perPage parameter (up to 100)."
+        },
+        {
+            "name": "list_issues",
+            "description": "List issues in a GitHub repository. For pagination, use the 'endCursor' from the previous response's 'pageInfo' in the 'after' parameter."
+        },
+        {
+            "name": "list_pull_requests",
+            "description": "List pull requests in a GitHub repository. If the user specifies an author, then DO NOT use this tool and use the search_pull_requests tool instead."
+        },
+        {
+            "name": "pull_request_read",
+            "description": "Get information on a specific pull request in GitHub repository."
+        },
+        {
+            "name": "search_code",
+            "description": "Fast and precise code search across ALL GitHub repositories using GitHub's native search engine. Best for finding exact symbols, functions, classes, or specific code patterns."
+        },
+        {
+            "name": "search_commits",
+            "description": "Search for commits across GitHub repositories using GitHub's commit search syntax. Useful for finding specific changes, authors, or messages across one or many repositories. Searches the default branch only."
+        },
+        {
+            "name": "search_issues",
+            "description": "Search for issues in GitHub repositories using issues search syntax already scoped to is:issue"
+        },
+        {
+            "name": "search_pull_requests",
+            "description": "Search for pull requests in GitHub repositories using issues search syntax already scoped to is:pr"
+        },
+        {
+            "name": "search_repositories",
+            "description": "Find GitHub repositories by name, description, readme, topics, or other metadata. Perfect for discovering projects, finding examples, or locating specific repositories across GitHub."
+        },
+        {
+            "name": "search_users",
+            "description": "Find GitHub users by username, real name, or other profile information. Useful for locating developers, contributors, or team members."
+        }
+    ],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "https://api.githubcopilot.com/mcp/",
+                "mcp_tool_description": {
+                    "file": "mcp-tools.json"
+                }
+            },
+            "run_for_functions": [
+                "get_commit",
+                "get_file_contents",
+                "get_me",
+                "issue_read",
+                "list_commits",
+                "list_issues",
+                "list_pull_requests",
+                "pull_request_read",
+                "search_code",
+                "search_commits",
+                "search_issues",
+                "search_pull_requests",
+                "search_repositories",
+                "search_users"
+            ],
+            "auth": {
+                "type": "OAuthPluginVault",
+                "reference_id": "${{MCP_DA_AUTH_ID_APIGITHUBC}}"
+            }
+        }
+    ],
+    "description_for_model": "Plugin that delegates engineering-intelligence queries to GitHub's hosted Model Context Protocol (MCP) server at https://api.githubcopilot.com/mcp/. Use this plugin whenever a user asks anything about pull requests, issues, commits, code search, repositories, or GitHub users. The plugin runs strictly within the signed-in user's GitHub OAuth scope (repo, user). Always call get_me once at the start of a session if the user's GitHub login is not already known. For activity questions, prefer search_pull_requests and search_issues with GitHub search qualifiers (e.g. is:pr author:@me state:open updated:>YYYY-MM-DD). For depth on a specific pull request (reviews, status checks, comments) call pull_request_read.",
+    "contact_email": "zunyangc@github.com"
+}

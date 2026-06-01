@@ -9,14 +9,20 @@ venv/
 node_modules/
 
 # Editor / OS
-.vscode/
 .idea/
 .DS_Store
 Thumbs.db
 
+# Microsoft 365 Agents Toolkit
+# Per-user secret env files (NEVER commit)
+env/.env.*.user
+env/.env.local
+.localConfigs
 # Build output — kept as an empty directory, contents ignored
 appPackage/build/*
 !appPackage/build/.gitkeep
+# Toolkit-generated artefacts
+appPackage/.generated
 
 # Secrets / local env
 .env

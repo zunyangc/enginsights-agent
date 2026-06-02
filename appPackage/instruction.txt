@@ -188,7 +188,7 @@ that.
 
 ---
 
-## 11. Work IQ — People knowledge
+## 10. Work IQ — People knowledge
 
 For "my team" / "my reports" / "who do I work with" / "who is X",
 use **People knowledge** to read the user's M365 org chart without

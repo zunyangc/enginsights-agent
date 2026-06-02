@@ -1,16 +1,58 @@
-# Hackathon Submission — Self-Scored Rubric
+# Hackathon Submission — Agent Academy 2026
 
+**Track**: 🎯 Special Ops — *MCP integrations, external systems, advanced actions, structured outputs, evaluation patterns*  
 **Submission**: EngInsights Agent  
 **Repository**: https://github.com/zunyangc/enginsights-agent  
 **Author**: Zun Yang (`zunyangc`), paired with Copilot CLI (Claude Opus 4.7)  
-**Demo video**: https://youtu.be/vWAyDhlOpow  
+**Demo video**: https://youtu.be/vWAyDhlOpow (4:44)  
 **Microsoft Learn username**: [zunyangchin-4258](https://learn.microsoft.com/en-us/users/zunyangchin-4258/)
 
 ---
 
-## Core requirements
+## Use case
 
-### ✅ R1 — Hosted in Microsoft 365 Copilot Chat
+Engineering managers and individual developers lose 15–30 minutes every
+morning re-deriving the same context: *"What's open on my plate? Who on
+my team is stuck? What did we ship last week?"* The information is
+already in GitHub — it's just scattered across pull request lists,
+review queues, draft folders, and search filters.
+
+EngInsights Agent collapses that into a single Copilot Chat conversation:
+ask in natural language, get an evidence-cited answer in seconds. No
+extra app to open, no dashboard to maintain, no service to host.
+
+## Target user
+
+**Primary**: Engineering managers running teams of 3–10 reports who need
+fast situational awareness without context-switching out of Microsoft 365.
+
+**Secondary**: Individual contributors who want a one-prompt daily
+briefing of their own work — open PRs, stuck reviews, single next action.
+
+Both personas are handled by the same declarative agent, with persona
+detection routed by [`appPackage/instruction.txt`](appPackage/instruction.txt) §2.
+
+---
+
+## Scoring against the official Agent Academy rubric
+
+| Weight | Criterion | How this submission earns it |
+|---:|---|---|
+| **25%** | **Accuracy & Relevance** | Every answer is grounded in live GitHub data via 14 read-only MCP tools. `instruction.txt` forbids inventing data and mandates a tool call before any factual response. Heuristics (`stuck PR`, `review starvation`, `deep-worker pattern`) are explicit and reviewable. |
+| **25%** | **Technical Execution** | Uses the canonical M365 extensibility stack end-to-end: declarative agent (schema v1.7) + plugin manifest (schema v2.4) + Teams app manifest (v1.27) + hosted GitHub MCP server + M365 Plugin Vault OAuth. Zero hosted backend; all behaviour is declared, not coded. Provision lifecycle is fully automated via `m365agents.yml`. |
+| **15%** | **Creativity & Originality** | "Manager fan-out" pattern: the agent re-derives team rosters per-query via Work IQ's `People` capability rather than caching a static list, then fans out GitHub queries across reports in a single turn. Stateless by construction — no cache means no drift. |
+| **15%** | **User Experience & Presentation** | Six conversation starters covering the highest-value engineering-manager workflows, front-loaded with the manager patterns. Persona-specific output templates in `instruction.txt` §5. Sideloads in ~5 minutes via Toolkit Provision. Demo video at 4:44 walks the full flow. |
+| **10%** | **Reliability & Safety** | OAuth scope minimised to `read:user` + `repo`; no writes possible. Manager-output disclaimer ("workflow signals, not performance evaluation") enforced in `instruction.txt` §7. Failure modes explicit (`instruction.txt` §9): tool errors are reported verbatim, never relabelled. Token revocation is one click in GitHub settings. Full policy in [`SECURITY.md`](SECURITY.md). |
+| **10%** | **Use Case Impact** | Engineering managers are a high-leverage audience: every hour saved per manager compounds across their reports. The pattern (declarative agent + hosted MCP + Work IQ People) generalises to any role with a graph-shaped query — sales reps with CRM-MCP, recruiters with ATS-MCP, support leads with ticket-MCP. |
+
+---
+
+## Capability detail
+
+The sections below map each declared platform capability to its evidence
+in the repo — useful for reviewers verifying technical depth.
+
+### Hosted in Microsoft 365 Copilot Chat
 
 - `appPackage/manifest.json` is a Teams app manifest **v1.27** with a
   `copilotAgents.declarativeAgents[0]` block — the official packaging for
@@ -23,7 +65,7 @@
 - The demo video shows the agent running inside Copilot Chat with the
   agent tile and all six conversation starters.
 
-### ✅ R2 — Microsoft IQ integration (Work IQ via Skills + Tools + People)
+### Microsoft Work IQ integration (Skills + Tools + People)
 
 - Full mapping in [`docs/work-iq-integration.md`](docs/work-iq-integration.md).
 - The agent uses the canonical Microsoft-documented extension pattern for
@@ -40,11 +82,7 @@
   `description_for_model` are Skills-style descriptions Work IQ uses to
   decide when to invoke this plugin.
 
----
-
-## Bonus criteria
-
-### ⭐ Bonus 3 — MCP Apps (higher rating)
+### MCP Apps (plugin manifest v2.4)
 
 - The plugin packages a complete MCP-server experience into the M365
   Copilot extensibility surface using the **v2.4 plugin manifest schema**.
@@ -60,7 +98,7 @@
 
 [docs-mcp]: https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-mcp-plugins
 
-### ⭐ Bonus 4 — External MCP server integration
+### External MCP server integration
 
 - Integrated with `github/github-mcp-server` running on GitHub's hosted
   endpoint `https://api.githubcopilot.com/mcp/`.
@@ -80,7 +118,7 @@
 boundary. Enabling them is a one-line change to `mcp-tools.json` and
 `ai-plugin.json`.
 
-### ⭐ Bonus 5 — OAuth security for the MCP server
+### OAuth security for the MCP server
 
 - `m365agents.yml` registers an `oauth/register` step that creates a
   reference in the **M365 Plugin Vault** keyed by `apigithubc`. The
@@ -123,4 +161,5 @@ surface.
 3. [`appPackage/instruction.txt`](appPackage/instruction.txt) — the brain.
 4. [`appPackage/ai-plugin.json`](appPackage/ai-plugin.json) — MCP + OAuth declaration.
 5. [`appPackage/declarativeAgent.json`](appPackage/declarativeAgent.json) — starters + `People` capability.
-6. [`docs/work-iq-integration.md`](docs/work-iq-integration.md) — R2 mapping.
+6. [`docs/work-iq-integration.md`](docs/work-iq-integration.md) — Work IQ mapping.
+7. [`SECURITY.md`](SECURITY.md) — trust boundary, OAuth scopes, vulnerability reporting.

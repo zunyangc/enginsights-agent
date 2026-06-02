@@ -94,5 +94,5 @@
         }
     ],
     "description_for_model": "Plugin that delegates engineering-intelligence queries to GitHub's hosted Model Context Protocol (MCP) server at https://api.githubcopilot.com/mcp/. Use this plugin whenever a user asks anything about pull requests, issues, commits, code search, repositories, or GitHub users. The plugin runs strictly within the signed-in user's GitHub OAuth scope (repo, user). Always call get_me once at the start of a session if the user's GitHub login is not already known. For activity questions, prefer search_pull_requests and search_issues with GitHub search qualifiers (e.g. is:pr author:@me state:open updated:>YYYY-MM-DD). For depth on a specific pull request (reviews, status checks, comments) call pull_request_read.",
-    "contact_email": "zunyangc@github.com"
+    "contact_email": "zunyang.chin@centific.com"
 }

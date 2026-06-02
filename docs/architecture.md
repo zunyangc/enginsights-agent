@@ -125,4 +125,4 @@ pointing at a FastAPI service we hosted. That worked, but:
 | Auth                     | GitHub App + tenant-config JSON          | Per-user OAuth (canonical)                      |
 | Adding a new endpoint    | Code + deploy + rebuild manifest         | Add the tool name to `mcp-tools.json`           |
 | Standard compliance      | Custom REST contract                     | Model Context Protocol (Anthropic-led standard) |
-| Hackathon scoring        | Bonus 3/4/5 not earned                   | Bonus 3, 4, 5 all earned                        |
+| Agent Academy capability surface | Bypasses MCP Apps + External MCP + OAuth-on-MCP | Demonstrates MCP Apps + External MCP + OAuth-on-MCP (the Special Ops focus areas) |

@@ -1,7 +1,8 @@
 # Work IQ Integration
 
 > A short doc judges can read in 60 seconds, mapping how this agent
-> satisfies hackathon **Requirement R2 — Microsoft IQ integration**.
+> integrates with **Microsoft Work IQ** through the canonical Skills +
+> Tools + People extensibility surface.
 
 ## What Work IQ is, in one paragraph
 
@@ -53,7 +54,7 @@ domain intelligence — exactly what the hackathon asks for.
 ## Evidence judges can verify
 
 1. The agent loads as a sideloaded entry in
-   https://m365.cloud.microsoft/chat (R1 — M365 Copilot Chat).
+   https://m365.cloud.microsoft/chat (Microsoft 365 Copilot Chat).
 2. `appPackage/declarativeAgent.json` follows declarative-agent schema
    **v1.7** with `capabilities: [{ "name": "People" }]`.
 3. `appPackage/ai-plugin.json` follows plugin-manifest schema **v2.4**.

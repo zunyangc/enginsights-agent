@@ -37,17 +37,17 @@ Pattern reference: Microsoft Learn's
 
 ---
 
-## Hackathon scoring — at a glance
+## Capabilities at a glance
 
-| Criterion                                  | How this repo satisfies it                                                                    |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| ✅ R1 — Hosted in M365 Copilot Chat        | Declarative agent, sideloaded as `appPackage.zip` via the Agents Toolkit                       |
-| ✅ R2 — Microsoft IQ integration           | **Work IQ** via Skills + Tools — Copilot orchestrator + MCP plugin + `People` capability       |
-| ⭐ Bonus 3 — MCP Apps                      | Plugin uses the v2.4 manifest schema over an MCP server (`api.githubcopilot.com/mcp/`)         |
-| ⭐ Bonus 4 — External MCP server           | Official `github/github-mcp-server`, hosted by GitHub at `api.githubcopilot.com/mcp/`         |
-| ⭐ Bonus 5 — OAuth on the MCP server       | Per-user GitHub OAuth 2.0; client credentials live in the M365 Plugin Vault, never in repo    |
+| Capability                              | How this repo demonstrates it                                                                 |
+| --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Hosted in M365 Copilot Chat             | Declarative agent, sideloaded via the Microsoft 365 Agents Toolkit `Provision` lifecycle      |
+| Work IQ integration (Skills + Tools)    | Copilot orchestrator + MCP plugin + `People` capability for org-graph fan-out                 |
+| MCP Apps (plugin manifest v2.4)         | Plugin uses the v2.4 manifest schema over an MCP server (`api.githubcopilot.com/mcp/`)        |
+| External MCP server integration         | Official `github/github-mcp-server`, hosted by GitHub at `api.githubcopilot.com/mcp/`         |
+| OAuth security for the MCP server       | Per-user GitHub OAuth 2.0; client credentials live in the M365 Plugin Vault, never in repo    |
 
-Full self-scored rubric: [`SUBMISSION.md`](SUBMISSION.md).
+Full Agent Academy rubric mapping: [`SUBMISSION.md`](SUBMISSION.md).
 
 ---
 

@@ -4,7 +4,7 @@
 **Repository**: https://github.com/zunyangc/enginsights-agent  
 **Author**: Zun Yang (`zunyangc`), paired with Copilot CLI (Claude Opus 4.7)  
 **Demo video**: https://youtu.be/vWAyDhlOpow  
-**Microsoft Learn username**: _to be filled at submission time_
+**Microsoft Learn username**: [zunyangchin-4258](https://learn.microsoft.com/en-us/users/zunyangchin-4258/)
 
 ---
 

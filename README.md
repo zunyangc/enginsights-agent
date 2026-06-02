@@ -14,6 +14,8 @@ abandoned drafts, or review starvation — with PR links you can click. All
 through the user's own GitHub OAuth token; nothing leaves the trust
 boundary GitHub already enforces.
 
+**📺 Watch the 5-minute demo:** https://youtu.be/vWAyDhlOpow
+
 ---
 
 ## What's in the box

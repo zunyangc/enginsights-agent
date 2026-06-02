@@ -3,7 +3,7 @@
 **Submission**: EngInsights Agent  
 **Repository**: https://github.com/zunyangc/enginsights-agent  
 **Author**: Zun Yang (`zunyangc`), paired with Copilot CLI (Claude Opus 4.7)  
-**Demo video**: _to be filled at submission time_  
+**Demo video**: https://youtu.be/vWAyDhlOpow  
 **Microsoft Learn username**: _to be filled at submission time_
 
 ---
